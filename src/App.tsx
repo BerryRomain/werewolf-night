@@ -203,7 +203,6 @@ export default function App() {
       socket.off('hunterShot');
       socket.off('hunterShotResolved');
       socket.off('errorMessage');
-      socket.disconnect();
     };
   }, [socket]);
 
