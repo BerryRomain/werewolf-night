@@ -68,7 +68,7 @@ interface PrivateState {
 }
 
 export default function App() {
-  const socket = useMemo(() => io({ transports: ['websocket', 'polling'] }), []);
+  const socket = useMemo(() => io({ transports: ['polling', 'websocket'] }), []);
   const [page, setPage] = useState<'lobby' | 'game'>('lobby');
   const [name, setName] = useState('');
   const [gameCode, setGameCode] = useState('');
