@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werewolf Night</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Werewolf Night</h1>
+      <p>Une version local du jeu avec 3 cartes centrales et des actions de nuit.</p>
+      <button id="toggleCompositionButton" class="secondary">Règles / Composition</button>
+    </header>
+
+    <section id="compositionPanel" class="box hidden composition-panel">
+      <button id="closeCompositionButton" class="close-button">Fermer</button>
+      <h2>Règles et rôles</h2>
+      <p>Chaque joueur reçoit un rôle caché. Trois cartes sont placées au centre.</p>
+      <ul>
+        <li><strong>Loup Garou</strong> : peut regarder une carte du centre.</li>
+        <li><strong>Noiseuse</strong> : peut regarder une carte du centre ou le rôle d’un autre joueur.</li>
+        <li><strong>Voleur</strong> : échange son rôle avec un autre joueur et découvre sa nouvelle carte.</li>
+        <li><strong>Insomniaque</strong> : regarde sa propre carte à la fin de la nuit.</li>
+        <li><strong>Villageois</strong> : n’a pas d’action spéciale la nuit.</li>
+      </ul>
+      <p>Pendant la journée, discutez, puis votez pour éliminer un joueur.</p>
+    </section>
+
+    <section class="box" id="join-section">
+      <h2>Créer ou rejoindre une partie</h2>
+      <div class="form-row">
+        <label>Ton pseudo</label>
+        <input id="nameInput" placeholder="Ex: Alice" />
+      </div>
+      <div class="form-row actions">
+        <button id="createButton">Créer une partie</button>
+        <button id="joinButton">Rejoindre une partie</button>
+      </div>
+      <div class="form-row" id="joinRow">
+        <label>Code de la partie</label>
+        <input id="gameCodeInput" placeholder="ABCDE" maxlength="5" />
+      </div>
+    </section>
+
+    <section class="box hidden" id="lobby-section">
+      <h2>Salon de jeu</h2>
+      <p>Code : <strong id="gameCodeLabel"></strong></p>
+      <div id="playerList"></div>
+      <button id="startButton" class="primary">Démarrer la partie</button>
+    </section>
+
+    <section class="box hidden" id="game-section">
+      <div class="game-header">
+        <div>
+          <h2>Jeu en cours</h2>
+          <p>Phase : <strong id="phaseLabel"></strong></p>
+          <p>Ton rôle : <strong id="roleLabel"></strong></p>
+          <p id="actorLabel"></p>
+          <p id="timerLabel" class="timer-label"></p>
+          <div id="timerBar" class="timer-bar hidden"><div id="timerFill" class="timer-fill"></div></div>
+        </div>
+      </div>
+
+      <div id="boardSection" class="board-container">
+        <div id="playerBoard" class="player-board"></div>
+        <div id="centerSection" class="center-section">
+          <h3>Centre</h3>
+          <div id="centerCards" class="center-cards"></div>
+        </div>
+      </div>
+
+      <section id="roleRules" class="box secondary hidden"></section>
+      <section id="actionSection" class="box"></section>
+      <section id="voteSection" class="box hidden"></section>
+      <section class="box" id="logSection">
+        <h3>Journal</h3>
+        <ul id="logList"></ul>
+      </section>
+      <div id="statusMessage" class="message"></div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

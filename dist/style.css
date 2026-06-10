@@ -1,0 +1,312 @@
+﻿:root {
+  --bg: #121212;
+  --surface: #1f1f2b;
+  --surface2: #27293f;
+  --surface3: #32334a;
+  --text: #f2f2f2;
+  --accent: #ff7f50;
+  --accent2: #62d6ff;
+  --accent3: #a8ff60;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, #2b2b3f, #121212 60%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.box {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.composition-panel {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #161625;
+  color: var(--text);
+}
+
+button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #121212;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button.secondary {
+  background: var(--accent2);
+  color: #121212;
+}
+
+button.primary {
+  width: 100%;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#playerList {
+  display: grid;
+  gap: 8px;
+}
+
+.player-card {
+  padding: 12px 14px;
+  background: var(--surface2);
+  border-radius: 14px;
+}
+
+#logSection {
+  margin-top: 18px;
+}
+
+#logList {
+  padding-left: 18px;
+}
+
+.timer-label {
+  margin: 12px 0 8px;
+  font-size: 0.95rem;
+  color: #ffd480;
+  font-weight: 700;
+}
+
+.timer-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.timer-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffb86c, #ff7f50);
+  transition: width 0.2s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  margin-top: 14px;
+  padding: 12px;
+  background: rgba(255, 127, 80, 0.15);
+  border-radius: 12px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 12px;
+  place-items: center;
+  min-height: 420px;
+}
+
+.player-board {
+  grid-column: 1 / span 3;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  grid-template-rows: repeat(3, minmax(120px, 1fr));
+  gap: 12px;
+  justify-items: center;
+  align-items: center;
+}
+
+.player-slot {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-card-inner,
+.center-card {
+  width: 130px;
+  height: 140px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.25s ease, background 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  user-select: none;
+}
+
+.player-card-inner.face-down,
+.center-card.face-down {
+  background: linear-gradient(180deg, #2b2b3f, #1f1f2b);
+  color: #bbb;
+}
+
+.player-card-inner.face-up,
+.center-card.face-up {
+  background: linear-gradient(180deg, rgba(255,127,80,0.9), rgba(255,191,128,0.75));
+  color: #121212;
+  font-weight: 800;
+}
+
+.center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+}
+
+.center-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.player-name {
+  font-size: 0.95rem;
+  color: var(--accent2);
+}
+
+.clickable {
+  cursor: pointer;
+  transform: translateY(0);
+}
+
+.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.swap-animate {
+  animation: swap-move 0.7s ease;
+}
+
+@keyframes swap-move {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -12px); }
+  100% { transform: translate(0, 0); }
+}
+
+.center-card.flip {
+  animation: flip-card 0.7s ease;
+}
+
+@keyframes flip-card {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+#actionSection,
+#voteSection,
+#roleRules {
+  margin-top: 18px;
+}
+
+.composition-panel {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 820px) {
+  .board-container {
+    display: block;
+  }
+
+  .player-board {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    grid-template-rows: repeat(4, minmax(120px, 1fr));
+  }
+
+  .center-section {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .player-board {
+    grid-template-columns: repeat(1, minmax(140px, 1fr));
+  }
+
+  .center-cards {
+    flex-direction: column;
+  }
+}
