@@ -257,6 +257,13 @@ function finalizeVotes(game) {
   game.voteTimerStartAt = null;
   game.voteTimerDuration = null;
   clearVoteTimer(game);
+  // Reveal all center cards to all players during reveal phase
+  game.players.forEach((player) => {
+    if (game.personalViews[player.id]) {
+      game.personalViews[player.id].centerCards = [true, true, true];
+      game.personalViews[player.id].centerRoles = game.centerCards.map((c) => c.role);
+    }
+  });
   syncGameState(game);
   sendGameState(game);
 }
@@ -420,6 +427,13 @@ function advanceNight(game) {
     game.voteTimerDuration = 5 * 60 * 1000;
     game.votes = {};
     game.voteResults = null;
+    // Reset center cards for all players (hide any cards peeked during night)
+    game.players.forEach((player) => {
+      if (game.personalViews[player.id]) {
+        game.personalViews[player.id].centerCards = [false, false, false];
+        game.personalViews[player.id].centerRoles = [null, null, null];
+      }
+    });
     game.logs.push('La nuit est terminée. Le vote commence.');
     syncGameState(game);
     sendGameState(game);
