@@ -134,6 +134,14 @@ export default function GameLayout({
     setPeekedCenterVisible(new Set());
   }, [phase, nightTurn?.actorId, nightTurn?.roleName]);
 
+
+  useEffect(() => {
+  if (phase.toLowerCase() !== 'night') {
+    setPeekedCenterIds(new Set());
+    setPeekedCenterVisible(new Set());
+  }
+  }, [phase]);
+
   useEffect(() => {
     let timer: any = null;
     const currentTimer = isVotePhase ? voteTimer : nightTurn;
